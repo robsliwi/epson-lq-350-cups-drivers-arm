@@ -13,6 +13,8 @@
           "aarch64-linux"
           "armv6l-linux"
           "armv7l-linux"
+          "x86_64-darwin"
+          "aarch64-darwin"
         ]
           (system:
             function (import nixpkgs {
