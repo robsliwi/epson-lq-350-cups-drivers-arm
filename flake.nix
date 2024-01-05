@@ -19,7 +19,6 @@
           (system:
             function (import nixpkgs {
               inherit system;
-              config.allowUnfree = true;
             }));
     in
     {
