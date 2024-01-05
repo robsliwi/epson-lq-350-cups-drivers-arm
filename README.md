@@ -7,6 +7,21 @@ This Nix flake builds two files:
 from the sources that are fetched from Epson directly.
 Both files are needed to use the dot-matrix-printer with all features with CUPS.
 
+## Building it
+
+    nix build
+
+Should be enough to get them for your architecture or those that are set in your [binfmt module](https://github.com/NixOS/nixpkgs/blob/f82e9b88c983b5fad78b35ec57985e9609c416b0/nixos/modules/system/boot/binfmt.nix).
+
+If you want to compile for a certain architecture pass it as argument to nix build like so:
+
+    nix build --system armv7l-linux
+
+## Using it
+
+Have a look in the `result` directory.
+The PPD can be selected in the CUPS webinterface and the compiled filter needs to be copied in your directory where all the other filters live.
+
 ## Story time
 I came across a request to attach the given Epson dot-matrix-printer to a Raspberry Pi that should share the printer with Windows machines in the local network.
 
@@ -20,3 +35,7 @@ Given the nature of the Raspberry Pi those would not install.
 Extracting the PPD file from the archives it claimed that a particular filter was missing.
 The filter is a binary that is compiled for the certain architecture.
 Praise Epson for providing the source files to compile the driver ourselves.
+
+## Disclaimer
+As this flake does nothing more than downloading the official sources and compiles them there should be no license violated.
+At the time of writing the files were shipped with a GPL-2.0 license.
