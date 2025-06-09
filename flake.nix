@@ -41,9 +41,19 @@
           '';
 
           installPhase = ''
-            mkdir -p $out
-            cp -r /tmp/epsidm24-secc0004-1.0.0/ppd/eplq350-rastertoepsidm24-secc0004.ppd $out
-            cp -r /tmp/epsidm24-secc0004-1.0.0/src/rastertoepsidm24-secc0004 $out
+            # mkdir -p $out
+            # cp -r /tmp/epsidm24-secc0004-1.0.0/ppd/eplq350-rastertoepsidm24-secc0004.ppd $out
+            # cp -r /tmp/epsidm24-secc0004-1.0.0/src/rastertoepsidm24-secc0004 $out
+            # Create the directories acording to CUPS
+            mkdir -p $out/share/cups/model
+            mkdir -p $out/lib/cups/filter
+
+            # Install PPD file
+            cp /tmp/epsidm24-secc0004-1.0.0/ppd/eplq350-rastertoepsidm24-secc0004.ppd $out/share/cups/model/
+
+            # Install filter binary
+            cp /tmp/epsidm24-secc0004-1.0.0/src/rastertoepsidm24-secc0004 $out/lib/cups/filter/
+            chmod +x $out/lib/cups/filter/rastertoepsidm24-secc0004
           '';
         };
       });
