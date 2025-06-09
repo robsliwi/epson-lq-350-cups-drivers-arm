@@ -22,6 +22,24 @@ If you want to compile for a certain architecture pass it as argument to nix bui
 Have a look in the `result` directory.
 The PPD can be selected in the CUPS webinterface and the compiled filter needs to be copied in your directory where all the other filters live.
 
+Or it can be consumed within a `nixosConfiguration` like that:
+
+```nix
+{
+  config = {
+    services = {
+      printing = {
+        enable = true;
+        drivers = [
+          self.outputs.packages.aarch64-linux.default
+        ];
+      };
+    };
+  };
+}
+
+```
+
 ## Story time
 I came across a request to attach the given Epson dot-matrix-printer to a Raspberry Pi that should share the printer with Windows machines in the local network.
 
